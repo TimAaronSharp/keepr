@@ -2,6 +2,7 @@ using System.Data;
 using keepr.Models;
 using Dapper;
 using MySql.Data.MySqlClient;
+using System;
 
 namespace keepr.Repositories
 {
@@ -17,14 +18,16 @@ namespace keepr.Repositories
             creds.Password = BCrypt.Net.BCrypt.HashPassword(creds.Password);
             //sql
 
-            // int defaultValue = 0;
+            int defaultValue = 0;
+            DateTime created = new DateTime();
 
             try
             {
+                System.Console.WriteLine("It got here");
 
                 int id = _db.ExecuteScalar<int>(@"
-                INSERT INTO users (Username, FirstName, LastName, Email, Password, AvatarURL, OwnKeepsViewed, OwnKeepsVaulted)
-                VALUES (@Username, @FirstName, @LastName, @Email, @Password, @AvatarURL, @defaultValue, @defaultValue);
+                INSERT INTO users (Username, FirstName, LastName, Email, Password, AvatarURL, OwnKeepsViewed, OwnKeepsVaulted, DateCreated)
+                VALUES (@Username, @FirstName, @LastName, @Email, @Password, @AvatarURL, @OwnKeepsViewed, @OwnKeepsVaulted, @DateCreated);
                 SELECT LAST_INSERT_ID();
             ", creds);
 
@@ -32,11 +35,18 @@ namespace keepr.Repositories
                 {
                     Id = id,
                     Username = creds.Username,
-                    Email = creds.Email
+                    FirstName = creds.FirstName,
+                    LastName = creds.LastName,
+                    Email = creds.Email,
+                    AvatarURL = creds.AvatarURL,
+                    OwnKeepsViewed = defaultValue,
+                    OwnKeepsVaulted = defaultValue,
+                    DateCreated = created
                 };
             }
             catch (MySqlException e)
             {
+                System.Console.WriteLine("It didn't make it");
                 System.Console.WriteLine("ERROR: " + e.Message);
                 return null;
             }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -7,7 +8,13 @@ namespace keepr.Models
     {
         public int Id { get; set; }
         public string Username { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
+        public string AvatarURL { get; set; }
+        public int OwnKeepsViewed { get; set; } = new int();
+        public int OwnKeepsVaulted { get; set; } = new int();
+        public DateTime DateCreated { get; set; }
 
         internal ClaimsPrincipal SetClaims()
         {

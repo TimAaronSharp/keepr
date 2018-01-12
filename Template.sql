@@ -84,7 +84,7 @@
 -- ALTER TABLE vaults
 -- ADD views int;
 
--- DELETE FROM users WHERE id = 3
+-- DELETE FROM users WHERE id = 5
 -- DELETE FROM vaults WHERE id = 2
 -- DELETE FROM vaultkeeps WHERE id = 9
 

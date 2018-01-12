@@ -6,8 +6,8 @@ namespace keepr.Models
     public class User
     {
         public int Id { get; set; }
-        [Required, MinLength(1)]
         public DateTime DateCreated { get; set; } = new DateTime();
+        [Required, MinLength(1)]
         public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -26,7 +26,13 @@ namespace keepr.Models
             {
                 Id = Id,
                 Username = Username,
-                Email = Email
+                FirstName = FirstName,
+                LastName = LastName,
+                Email = Email,
+                AvatarURL = AvatarURL,
+                OwnKeepsViewed = OwnKeepsViewed,
+                OwnKeepsVaulted = OwnKeepsVaulted,
+                DateCreated = DateCreated
             };
         }
     }

@@ -38,8 +38,8 @@ namespace keepr.Repositories
             DateTime created = new DateTime();
 
             int id = _db.ExecuteScalar<int>($@"INSERT INTO keeps (UserId, Name, Description, Views, Shares, VaultsAddedTo, ImageURL, DateCreated)
-                                            VALUES(@UserId, @Name, @Description, @defaultValue, @defaultValue, @defaultValue, @ImageURL, @created);
-                                            SELECT LAST_INSERT_ID()", new
+             VALUES(@UserId, @Name, @Description, @defaultValue, @defaultValue, @defaultValue, @ImageURL, @created);
+             SELECT LAST_INSERT_ID()", new
             {
                 keep.UserId,
                 keep.Name,

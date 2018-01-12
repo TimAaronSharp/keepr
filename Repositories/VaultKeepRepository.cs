@@ -19,48 +19,46 @@ namespace keepr.Repositories
         }
 
         // Find One Find Many add update delete
-        public IEnumerable<Vault> GetAll()
+        public IEnumerable<VaultKeep> GetAll()
         {
-            return _db.Query<Vault>("SELECT * FROM vaultkeeps");
+            return _db.Query<VaultKeep>("SELECT * FROM vaultkeeps");
         }
 
-        public Vault GetById(int id)
+        public VaultKeep GetById(int id)
         {
-            return _db.QueryFirstOrDefault<Vault>($"SELECT * FROM vaultkeeps WHERE id = {id}", id);
+            return _db.QueryFirstOrDefault<VaultKeep>($"SELECT * FROM vaultkeeps WHERE id = {id}", id);
         }
 
-        public Vault Add(Vault vault)
+        public VaultKeep Add(VaultKeep vaultKeep)
         {
             //INSERT INTO vaults - inserts the arguments to the matching parameters(order is important), then executes a separate SELECT query to get the ID of the last inserted item, and then auto increments to get a new id(provided auto increment is set on the table).
             //the new { vault.Name.... etc} is the object constructor that will be used in the insert query.
 
-            int defaultValues = 0;
-            DateTime created = new DateTime();
+            // DateTime created = new DateTime();
 
-            int id = _db.ExecuteScalar<int>($@"INSERT INTO vaultkeeps (UserId, Name, Description, Views, DateCreated)
-                                            VALUES(@UserId, @Name, @Description, @defaultValues, @created);
+            int id = _db.ExecuteScalar<int>($@"INSERT INTO vaultkeeps (VaultId, KeepId, UserId)
+                                            VALUES(@VaultId, @KeepId, @UserId);
                                             SELECT LAST_INSERT_ID()", new
             {
-                vault.UserId,
-                vault.Name,
-                vault.Description,
-                defaultValues,
-                created
+                vaultKeep.VaultId,
+                vaultKeep.KeepId,
+                vaultKeep.UserId
+                
             });
-            vault.Id = id;
-            return vault;
+            vaultKeep.Id = id;
+            return vaultKeep;
 
         }
 
-        public Vault GetOneByIdAndUpdate(int id, Vault vault)
+        public VaultKeep GetOneByIdAndUpdate(int id, VaultKeep vaultKeep)
         {
             //Queries for the first Vault that matches the id passed in. If it doesn't find it, it defaults to handle the error gracefully without crashing. If it finds the id, it updates the fields with the data you are sending.
-            return _db.QueryFirstOrDefault<Vault>($@"
+            return _db.QueryFirstOrDefault<VaultKeep>($@"
                 UPDATE vaultkeeps SET  
                     Name = @Name,
                     Description = @Description
                 WHERE Id = {id};
-                SELECT * FROM vaults WHERE id = {id};", vault);
+                SELECT * FROM vaults WHERE id = {id};", vaultKeep);
         }
 
         public string FindByIdAndRemove(int id)
