@@ -3,6 +3,7 @@ using keepr.Models;
 using Dapper;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 
 namespace keepr.Repositories
 {
@@ -93,6 +94,10 @@ namespace keepr.Repositories
             }
             return null;
         }
+        // public IEnumerable<VaultKeep> GetUsersVaultKeeps(int id)
+        // {
+        //     // return _db.Query<VaultKeep>($"SELECT * FROM vaultkeeps WHERE userid = {id}", id);
+        // }
 
         internal UserReturnModel UpdateUser(UserReturnModel user)
         {
@@ -107,7 +112,6 @@ namespace keepr.Repositories
                 return user;
             }
             return null;
-
         }
 
         internal string ChangeUserPassword(UserChangePasswordModel user)

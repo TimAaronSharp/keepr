@@ -56,6 +56,11 @@ namespace keepr.Controllers
         {
             await HttpContext.SignOutAsync();
         }
+        // [HttpGet("vaultkeeps/{id}")]
+        // public IEnumerable<VaultKeep> GetUsersVaultKeeps(int id)
+        // {
+        //     return _db.GetUsersVaultKeeps(id);
+        // }
 
         [HttpGet("authenticate")]
         public UserReturnModel Authenticate()

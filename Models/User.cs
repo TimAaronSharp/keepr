@@ -6,7 +6,6 @@ namespace keepr.Models
     public class User
     {
         public int Id { get; set; }
-        public DateTime DateCreated { get; set; } = new DateTime();
         [Required, MinLength(1)]
         public string Username { get; set; }
         public string FirstName { get; set; }
@@ -19,6 +18,7 @@ namespace keepr.Models
         public string AvatarURL { get; set; }
         public int OwnKeepsViewed { get; set; }
         public int OwnKeepsVaulted { get; set; }
+        public DateTime DateCreated { get; set; } = new DateTime();
 
         internal UserReturnModel GetUserReturnModel()
         {

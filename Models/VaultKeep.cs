@@ -9,7 +9,7 @@ namespace keepr.Models
         public int VaultId { get; set; }
         public int KeepId { get; set; }
         public int UserId { get; set; }
-        // public DateTime DateCreated { get; set; } = new DateTime();
+        public DateTime DateCreated { get; set; } = new DateTime();
 
 
     }

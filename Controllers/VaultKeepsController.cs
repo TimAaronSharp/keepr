@@ -19,18 +19,20 @@ namespace keepr.Controllers
         }
 
         // GET api/values
-        [HttpGet]
-        public IEnumerable<VaultKeep> Get()
-        {
-            return db.GetAll();
-        }
+        // [HttpGet]
+        // public IEnumerable<VaultKeep> Get()
+        // {
+        //     return db.GetAll();
+        // }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public VaultKeep Get(int id)
+        public IEnumerable<VaultKeepReturnModel> Get(int id)
         {
-            return db.GetById(id);
+            return db.GetByVaultId(id);
         }
+
+        
 
         // POST api/values
         // [Authorize]

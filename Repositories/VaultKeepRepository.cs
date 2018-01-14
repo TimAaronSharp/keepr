@@ -19,14 +19,17 @@ namespace keepr.Repositories
         }
 
         // Find One Find Many add update delete
-        public IEnumerable<VaultKeep> GetAll()
-        {
-            return _db.Query<VaultKeep>("SELECT * FROM vaultkeeps");
-        }
+        // public IEnumerable<VaultKeep> GetAll()
+        // {
+        //     return _db.Query<VaultKeep>("SELECT * FROM vaultkeeps");
+        // }
 
-        public VaultKeep GetById(int id)
+        public IEnumerable<VaultKeepReturnModel> GetByVaultId(int id)
         {
-            return _db.QueryFirstOrDefault<VaultKeep>($"SELECT * FROM vaultkeeps WHERE id = {id}", id);
+            // return _db.QueryFirstOrDefault<VaultKeep>($"SELECT * FROM vaultkeeps WHERE id = {id}", id);
+            return _db.Query<VaultKeepReturnModel>($@"SELECT * FROM vaultkeeps vk
+                                                         INNER JOIN keeps k ON k.id = vk.keepId
+                                                         WHERE (vaultId = 1)", id);
         }
 
         public VaultKeep Add(VaultKeep vaultKeep)
@@ -34,16 +37,16 @@ namespace keepr.Repositories
             //INSERT INTO vaults - inserts the arguments to the matching parameters(order is important), then executes a separate SELECT query to get the ID of the last inserted item, and then auto increments to get a new id(provided auto increment is set on the table).
             //the new { vault.Name.... etc} is the object constructor that will be used in the insert query.
 
-            // DateTime created = new DateTime();
+            DateTime created = new DateTime();
 
-            int id = _db.ExecuteScalar<int>($@"INSERT INTO vaultkeeps (VaultId, KeepId, UserId)
-                                            VALUES(@VaultId, @KeepId, @UserId);
+            int id = _db.ExecuteScalar<int>($@"INSERT INTO vaultkeeps (VaultId, KeepId, UserId, DateCreated)
+                                            VALUES(@VaultId, @KeepId, @UserId, @created);
                                             SELECT LAST_INSERT_ID()", new
             {
                 vaultKeep.VaultId,
                 vaultKeep.KeepId,
-                vaultKeep.UserId
-                
+                vaultKeep.UserId,
+                created
             });
             vaultKeep.Id = id;
             return vaultKeep;

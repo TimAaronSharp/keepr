@@ -8,7 +8,6 @@ namespace keepr.Models
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public DateTime DateCreated { get; set; } = new DateTime();
 
         [Required, MinLength(1)]
         public string Name { get; set; }
@@ -18,6 +17,7 @@ namespace keepr.Models
         public int VaultsAddedTo { get; set; }
         [Required]
         public string ImageURL { get; set; }
+        public DateTime DateCreated { get; set; } = new DateTime();
 
     }
 }
