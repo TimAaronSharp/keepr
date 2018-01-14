@@ -88,9 +88,9 @@
 
 -- -- USE THIS LINE FOR GET KEEPS BY VAULTID
 
-SELECT * FROM vaultkeeps vk
-INNER JOIN keeps k ON k.id = vk.keepId
-WHERE (vaultId = 1)
+-- SELECT * FROM vaultkeeps vk
+-- INNER JOIN keeps k ON k.id = vk.keepId
+-- WHERE (vaultId = 1)
 
 
 -- ALTER TABLE vaultkeeps
@@ -102,5 +102,5 @@ WHERE (vaultId = 1)
 
 -- SELECT * FROM users
 -- SELECT * FROM vaults
--- SELECT * FROM keeps
+-- SELECT * FROM keeps WHERE userid = 1
 -- SELECT * FROM vaultkeeps

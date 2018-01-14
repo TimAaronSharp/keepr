@@ -31,6 +31,11 @@ namespace keepr.Controllers
         {
             return db.GetById(id);
         }
+        [HttpGet("user/{id}")]
+        public IEnumerable<Keep> GetKeepsByUserId(int id)
+        {
+            return db.GetKeepsByUserId(id);
+        }
 
         // POST api/values
         // [Authorize]
