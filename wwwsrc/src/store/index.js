@@ -25,7 +25,8 @@ var store = new Vuex.Store({
         message: {},
         keeps: [],
         myKeeps: [],
-        myVaults: []
+        myVaults: [],
+        myVaultKeeps: []
     },
     mutations: {
         handleError(state, err) {
@@ -42,6 +43,12 @@ var store = new Vuex.Store({
         },
         setMyKeeps(state, myKeeps) {
             state.myKeeps = myKeeps
+        },
+        setMyVaults(state, vaults) {
+            state.myVaults = vaults
+        },
+        setMyVaultKeeps(state, vaultKeeps) {
+            state.myVaultKeeps = vaultKeeps
         }
     },
     actions: {
@@ -118,16 +125,61 @@ var store = new Vuex.Store({
                     commit('handleError', err)
                 })
         },
+        submitNewKeep({ commit, dispatch }, newKeep) {
+            debugger
+            api.post('keeps', newKeep)
+                .then(res => {
+                    if (res) {
+                        commit('setMessage', "New Keep Posted!")
+                        dispatch('getAllKeeps')
+                    } else {
+                        commit('setMessage', "New Keep Post Was Unsuccessful!")
+                    }
+                })
+                .catch(err => {
+                    commit('handleError', err)
+                })
+        },
         //#endregion
+
+        //#region Vaults
         getVaultsByUserId({ commit, dispatch }, userId) {
             api(`vaults/user/${userId}`)
                 .then(res => {
-                    commit('setMyKeeps', res.data)
+                    commit('setMyVaults', res.data)
+                })
+                .catch(err => {
+                    commit('handleError', err)
+                })
+        },
+        submitNewVault({ commit, dispatch }, newVault) {
+            api.post('vaults', newVault)
+                .then(res => {
+                    if (res) {
+                        commit('setMessage', "New Vault Posted!")
+                        dispatch('getVaultsByUserId')
+                    } else {
+                        commit('setMessage', "New Vault Post Was Unsuccessful!")
+                    }
+                })
+                .catch(err => {
+                    commit('handleError', err)
+                })
+        },
+        //#endregion
+
+        //#region VaultKeeps
+        getVaultKeepsByVaultId({ commit, dispatch }, vaultId) {
+            api(`vaultkeeps/${vaultId}`)
+                .then(res => {
+                    commit('setMyVaultKeeps', res.data)
                 })
                 .catch(err => {
                     commit('handleError', err)
                 })
         }
+
+        //#endregion
 
     }
 })

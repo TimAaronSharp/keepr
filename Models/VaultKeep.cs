@@ -10,7 +10,5 @@ namespace keepr.Models
         public int KeepId { get; set; }
         public int UserId { get; set; }
         public DateTime DateCreated { get; set; } = new DateTime();
-
-
     }
 }

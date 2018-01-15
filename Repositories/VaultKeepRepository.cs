@@ -24,12 +24,12 @@ namespace keepr.Repositories
         //     return _db.Query<VaultKeep>("SELECT * FROM vaultkeeps");
         // }
 
-        public IEnumerable<VaultKeepReturnModel> GetByVaultId(int id)
+        public IEnumerable<VaultKeepReturnModel> GetByVaultKeepByVaultId(int id)
         {
             // return _db.QueryFirstOrDefault<VaultKeep>($"SELECT * FROM vaultkeeps WHERE id = {id}", id);
             return _db.Query<VaultKeepReturnModel>($@"SELECT * FROM vaultkeeps vk
                                                          INNER JOIN keeps k ON k.id = vk.keepId
-                                                         WHERE (vaultId = 1)", id);
+                                                         WHERE (vaultId = {id})", id);
         }
 
         public VaultKeep Add(VaultKeep vaultKeep)

@@ -96,9 +96,9 @@
 -- ALTER TABLE vaultkeeps
 -- ADD datecreated DateTime;
 
--- DELETE FROM users WHERE id = 5
+-- DELETE FROM users WHERE id = 4
 -- DELETE FROM vaults WHERE id = 2
--- DELETE FROM vaultkeeps WHERE id = 9
+-- DELETE FROM vaultkeeps WHERE id = 27
 
 -- SELECT * FROM users
 -- SELECT * FROM vaults

@@ -29,7 +29,7 @@ namespace keepr.Controllers
         [HttpGet("{id}")]
         public IEnumerable<VaultKeepReturnModel> Get(int id)
         {
-            return db.GetByVaultId(id);
+            return db.GetByVaultKeepByVaultId(id);
         }
 
         
