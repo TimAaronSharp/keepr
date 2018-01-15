@@ -177,6 +177,19 @@ var store = new Vuex.Store({
                 .catch(err => {
                     commit('handleError', err)
                 })
+        },
+        addKeepToVault({ commit, dispatch }, payload) {
+            api.post('vaultkeeps', payload)
+                .then(res => {
+                    if (res) {
+                        commit('setMessage', 'Keep Added To Vault!')
+                    } else {
+                        commit('setMessage', "Keep Was Not Added To Vault!")
+                    }
+                })
+                .catch(err => {
+                    commit('handleError', err)
+                })
         }
 
         //#endregion
