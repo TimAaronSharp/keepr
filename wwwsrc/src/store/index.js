@@ -24,7 +24,8 @@ var store = new Vuex.Store({
         user: {},
         message: {},
         keeps: [],
-        myKeeps: []
+        myKeeps: [],
+        myVaults: []
     },
     mutations: {
         handleError(state, err) {
@@ -109,7 +110,17 @@ var store = new Vuex.Store({
                 })
         },
         getKeepsByUserId({ commit, dispatch }, userId) {
-            api('keeps/' + 'user/' + userId)
+            api(`keeps/user/${userId}`)
+                .then(res => {
+                    commit('setMyKeeps', res.data)
+                })
+                .catch(err => {
+                    commit('handleError', err)
+                })
+        },
+        //#endregion
+        getVaultsByUserId({ commit, dispatch }, userId) {
+            api(`vaults/user/${userId}`)
                 .then(res => {
                     commit('setMyKeeps', res.data)
                 })
@@ -117,7 +128,6 @@ var store = new Vuex.Store({
                     commit('handleError', err)
                 })
         }
-        //#endregion
 
     }
 })

@@ -29,6 +29,11 @@ namespace keepr.Repositories
             return _db.QueryFirstOrDefault<Vault>($"SELECT * FROM vaults WHERE id = {id}", id);
         }
 
+        public IEnumerable<Vault> GetVaultsByUserId(int id)
+        {
+            return _db.Query<Vault>($"SELECT * FROM vaults WHERE userid = {id}", id);
+        }
+
         public Vault Add(Vault vault)
         {
             //INSERT INTO vaults - inserts the arguments to the matching parameters(order is important), then executes a separate SELECT query to get the ID of the last inserted item, and then auto increments to get a new id(provided auto increment is set on the table).
