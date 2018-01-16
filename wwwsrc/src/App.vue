@@ -34,11 +34,37 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+    overflow: hidden;
   }
-  .bl{
+
+  .bl {
     display: block;
   }
-  .border{
+
+  .ilb {
+    display: inline-block;
+  }
+
+  .border {
     border: 2px solid black;
+  }
+
+  .custom-btn {
+    background: black;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+
+  .account-btn {
+    margin-top: 35%;
+    margin-bottom: 34%;
+    margin-right: 20%;
+  }
+
+  .fixed {
+    position: fixed;
   }
 </style>

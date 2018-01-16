@@ -1,9 +1,10 @@
 <template>
     <div class="register-component">
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register-modal">
-            Register
-        </button>
-
+        <div class="wrapper pull-right">
+            <button type="button" class="btn custom-btn account-btn" data-toggle="modal" data-target="#register-modal">
+                Register
+            </button>
+        </div>
         <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="register-modal-label">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -63,7 +64,7 @@
 
 <script>
     export default {
-        name: '',
+        name: 'Register',
         data() {
             return {
                 register: {
@@ -97,5 +98,6 @@
 
 </script>
 
-<style>
+<style scoped>
+
 </style>

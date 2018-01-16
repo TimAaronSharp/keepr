@@ -1,6 +1,6 @@
 <template>
-        <div class="new-vault-modal">
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#post-new-vault-modal">
+        <div class="new-vault-modal ilb">
+            <button type="button" class="btn custom-btn" data-toggle="modal" data-target="#post-new-vault-modal">
                 New Vault
             </button>
             <div class="modal fade" id="post-new-vault-modal" tabindex="-1" role="dialog" aria-labelledby="post-new-vault-modal-label">

@@ -1,7 +1,7 @@
 <template>
   <div class="home container-fluid">
-    <Sidebar></Sidebar>
-    <nav class="row">
+
+    <nav class="navbar-static-top row">
       <div class="pull-left logo-div">
         <img class="logo-img" src="../assets/keepr-logo.png" alt="">
       </div>
@@ -9,43 +9,33 @@
         <h1>Welcome, {{user.firstName}}</h1>
       </div>
       <div class="welcome-message pull-left" v-else>
-        <h1>Please login</h1>
+        <h1>Welcome to Keepr</h1>
       </div>
 
-      <div class="content pull-right" v-if="user.firstName">
-        <button class="logout-button" type="button" @click="logout">Logout</button>
+      <div class="pull-right" v-if="user.firstName">
+        <button class="btn custom-btn account-btn" type="button" @click="logout">Logout</button>
       </div>
 
-      <div v-if="!user.firstName">
-        <Login class="il"></Login>
-        <Register class="il"></Register>
+      <div v-else>
+        <Register></Register>
+        <Login></Login>
+
       </div>
 
     </nav>
-    <div v-if="user.firstName">
-      <NewKeep class="il"></NewKeep>
-      <NewVault class="il"></NewVault>
-      <Vault class="il"></Vault>
-      <ShowKeeps class="il"></ShowKeeps>
-    </div>
-
-    <!-- Button trigger modal -->
-
-
-
-
+    <Sidebar></Sidebar>
+    <ShowKeeps class="il"></ShowKeeps>
+    <KeepArea></KeepArea>
 
   </div>
 </template>
 
 <script>
   import ShowKeeps from './ShowKeeps'
-  import Vault from './Vault'
-  import NewKeep from './NewKeep'
-  import NewVault from './NewVault'
   import Login from './Login'
   import Register from './Register'
   import Sidebar from './Sidebar'
+  import KeepArea from './KeepArea'
 
   export default {
     name: 'Home',
@@ -70,12 +60,10 @@
     },
     components: {
       ShowKeeps,
-      NewKeep,
-      NewVault,
-      Vault,
       Login,
       Register,
-      Sidebar
+      Sidebar,
+      KeepArea
     }
   }
 </script>
@@ -86,6 +74,7 @@
     background: #fa0296;
     color: white;
   }
+
   /* .home{
     min-height: 100vh;
   } */
@@ -105,14 +94,4 @@
     display: flex;
     align-items: center;
   } */
-
-  .logout-button {
-    background: black;
-    border: 0;
-    border-radius: 5px;
-    font-size: 2rem;
-    margin-top: 35%;
-    margin-bottom: 34%;
-    margin-right: 20%;
-  }
 </style>

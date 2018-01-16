@@ -143,6 +143,16 @@ var store = new Vuex.Store({
                 })
             $('#post-new-keep-modal').modal('hide')
         },
+        incrementKeepViews({ commit, dispatch }, keep) {
+            api.put(`keeps/${keep.id}`, keep)
+                .then(res => {
+                    dispatch('getAllKeeps')
+                    commit('setMessage', 'Keep viewed!')
+                })
+                .catch(err => {
+                    commit('handleError', err)
+                })
+        },
         //#endregion
 
         //#region Vaults

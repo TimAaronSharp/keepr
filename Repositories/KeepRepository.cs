@@ -62,8 +62,13 @@ namespace keepr.Repositories
             //Queries for the first Keep that matches the id passed in. If it doesn't find it, it defaults to handle the error gracefully without crashing. If it finds the id, it updates the fields with the data you are sending.
             return _db.QueryFirstOrDefault<Keep>($@"
                 UPDATE keeps SET  
+                    UserId = @UserId,
                     Name = @Name,
-                    Description = @Description
+                    Description = @Description,
+                    Views = @Views,
+                    VaultsAddedTo = @VaultsAddedTo,
+                    ImageURL = @ImageURL
+
                 WHERE Id = {id};
                 SELECT * FROM keeps WHERE id = {id};", keep);
         }

@@ -1,6 +1,6 @@
 <template>
-    <div class="vault">
-        <button @click="showMyVaultsList(); getVaultsByUserId();">My Vaults</button>
+    <div class="vault ilb">
+        <button @click="showMyVaultsList(); getVaultsByUserId();" class="btn btn-primary custom-btn custom-btn">My Vaults</button>
         <div v-if="showMyVaults">
             <div class="my-vaults-area" v-if="myVaults.length > 0 && user.firstName">
                 <div class="my-vaults" v-for="myVault in myVaults">

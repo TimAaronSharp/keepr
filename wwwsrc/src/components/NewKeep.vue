@@ -1,6 +1,6 @@
 <template>
-        <div class="post-new-keep-modal" v-if="user.firstName">
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#post-new-keep-modal">
+        <div class="post-new-keep-modal ilb" v-if="user.firstName">
+            <button type="button" class="btn btn-primary custom-btn" data-toggle="modal" data-target="#post-new-keep-modal">
                 New Keep
             </button>
             <div class="modal fade" id="post-new-keep-modal" tabindex="-1" role="dialog" aria-labelledby="post-new-keep-modal-label">

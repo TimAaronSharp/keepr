@@ -1,8 +1,10 @@
 <template>
     <div class="login-component">
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login-modal">
-            Login
-        </button>
+        <div class="wrapper pull-right">
+            <button type="button" class="btn custom-btn account-btn" data-toggle="modal" data-target="#login-modal">
+                Login
+            </button>
+        </div>
         <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modal-label">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
