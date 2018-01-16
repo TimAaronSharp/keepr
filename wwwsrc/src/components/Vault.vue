@@ -12,14 +12,14 @@
                             {{myVaultKeep.name}} - {{myVaultKeep.description}}
                         </div>
                     </div>
-                </div>
-                <div v-else>
-                    <p>This vault has no keeps.</p>
+                    <div v-else>
+                        <p>This vault has no keeps.</p>
+                    </div>
                 </div>
             </div>
             <div class="my-vaults-area" v-else-if="user.firstName && myVaults.length == 0">
-                    <p>You have no vaults.</p>
-                </div>
+                <p>You have no vaults.</p>
+            </div>
             <div class="my-vaults-area" v-else>
                 <p>Please login to view vaults.</p>
             </div>

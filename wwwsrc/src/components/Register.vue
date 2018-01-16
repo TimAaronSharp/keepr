@@ -1,5 +1,5 @@
 <template>
-    <div class="register-modal">
+    <div class="register-component">
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register-modal">
             Register
         </button>

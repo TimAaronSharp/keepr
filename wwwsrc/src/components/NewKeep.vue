@@ -1,5 +1,4 @@
 <template>
-    <div class="new-keep">
         <div class="post-new-keep-modal" v-if="user.firstName">
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#post-new-keep-modal">
                 New Keep
@@ -42,7 +41,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
 </template>
 

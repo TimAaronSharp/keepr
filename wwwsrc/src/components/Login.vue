@@ -20,7 +20,7 @@
                                 <div class="form-group">
                                     <label for="password">
                                         <span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                                    <input type="login-password" class="form-control" id="login-password" placeholder="eyelessthan3horses" v-model='login.password'>
+                                    <input type="password" class="form-control" id="login-password" placeholder="eyelessthan3horses" v-model='login.password'>
                                 </div>
                                 <button type="submit" class="btn btn-default btn-success" data-toggle="modal" data-backdrop="false">
                                     Login</button>

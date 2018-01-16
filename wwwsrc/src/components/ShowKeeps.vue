@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div class="show-keeps-component">
 
         <button @click="showMyKeepsList(); getKeepsByUserId();">My Keeps</button>
 
         <div v-if="showMyKeeps">
             <div class="my-keeps-area row text-center" v-if="myKeeps.length > 0 && user.firstName">
-                <div class="my-keeps col-sm-3 border" v-for="keep in myKeeps">
-                    <img class="bl keeps-img" :src="keep.imageURL" alt=""> {{keep.name}} - {{keep.description}}
+                <div class="my-keeps keep col-sm-3 border" v-for="keep in myKeeps">
+                    <img class="bl keeps-img" :src="keep.imageURL" alt=""><p class="keep-preview">{{keep.name}} - {{keep.description}}</p>
                     <button @click="showAddToVaultsList">Add to Vault</button>
                     <div v-if="showAddToVaults">
                         <div v-for="vault in myVaults">
@@ -26,12 +26,12 @@
         <button @click='showKeeps'>Keeps</button>
 
         <div class="all-Keeps-Area row" v-if="showAllKeeps">
-            <div class="all-keeps col-sm-3 border text-center" v-for="keep in keeps">
-                <img class="bl keeps-img" :src="keep.imageURL" alt=""> {{keep.name}} - {{keep.description}}
-                <button @click="showAddToVaultsList">Add to Vault</button>
+            <div class="all-keeps keep col-sm-2 col-sm-offset-1 border text-center block" v-for="keep in keeps">
+                <img class="bl keeps-img" :src="keep.imageURL" alt=""> <p class="keep-preview">{{keep.name}} - {{keep.description}}</p>
+                <button class="btn btn-default add-to-vault-button" @click="showAddToVaultsList">Add to Vault</button>
                 <div v-if="showAddToVaults">
                     <div v-for="vault in myVaults">
-                        <button @click="addKeepToVault(user.id, vault.id, keep.id)">{{vault.name}}</button>
+                        <button class="btn btn-default add-to-vault-button" @click="addKeepToVault(user.id, vault.id, keep.id)">{{vault.name}}</button>
                     </div>
                 </div>
             </div>
@@ -102,5 +102,22 @@
 <style scoped>
     .keeps-img {
         margin: auto;
+    }
+    .keep{
+        border-radius: 5px;
+        margin-top: 5%;
+    }
+    .keep:hover{
+        background: green;
+    }
+    .add-to-vault-button{
+        background: black;
+        color:white;
+    }
+    .keep-preview{
+        font-weight: bold;
+    }
+    .block{
+        display: block;
     }
 </style>

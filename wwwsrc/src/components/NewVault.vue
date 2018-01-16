@@ -1,5 +1,4 @@
 <template>
-    <div class="new-vault">
         <div class="new-vault-modal">
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#post-new-vault-modal">
                 New Vault
@@ -42,7 +41,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
 </template>
 
