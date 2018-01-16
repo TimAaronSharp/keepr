@@ -2,7 +2,7 @@
     <div class="vault">
         <button @click="showMyVaultsList(); getVaultsByUserId();">My Vaults</button>
         <div v-if="showMyVaults">
-            <div class="my-vaults-area" v-if="myVaults.length > 0">
+            <div class="my-vaults-area" v-if="myVaults.length > 0 && user.firstName">
                 <div class="my-vaults" v-for="myVault in myVaults">
                     <button @click="showVaultKeepsList(); getVaultKeepsByVaultId(myVault.id);">{{myVault.name}}</button>
                 </div>
@@ -13,9 +13,15 @@
                         </div>
                     </div>
                 </div>
+                <div v-else>
+                    <p>This vault has no keeps.</p>
+                </div>
             </div>
+            <div class="my-vaults-area" v-else-if="user.firstName && myVaults.length == 0">
+                    <p>You have no vaults.</p>
+                </div>
             <div class="my-vaults-area" v-else>
-                <p>You have no vaults.</p>
+                <p>Please login to view vaults.</p>
             </div>
         </div>
     </div>

@@ -104,3 +104,7 @@
 -- SELECT * FROM vaults
 -- SELECT * FROM keeps WHERE userid = 1
 -- SELECT * FROM vaultkeeps
+
+-- UPDATE keeps
+-- SET imageurl = "http://placehold.it/200x200"
+-- WHERE id = 24

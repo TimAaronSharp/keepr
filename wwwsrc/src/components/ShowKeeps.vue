@@ -1,26 +1,33 @@
 <template>
     <div>
+
         <button @click="showMyKeepsList(); getKeepsByUserId();">My Keeps</button>
+
         <div v-if="showMyKeeps">
-            <div class="my-keeps-area" v-if="myKeeps.length > 0">
-                <div class="my-keeps" v-for="myKeep in myKeeps">
-                    {{myKeep.name}} - {{myKeep.description}}
-                    <button @click="addToVault">Add to Vault</button>
+            <div class="my-keeps-area row text-center" v-if="myKeeps.length > 0 && user.firstName">
+                <div class="my-keeps col-sm-3 border" v-for="keep in myKeeps">
+                    <img class="bl keeps-img" :src="keep.imageURL" alt=""> {{keep.name}} - {{keep.description}}
+                    <button @click="showAddToVaultsList">Add to Vault</button>
                     <div v-if="showAddToVaults">
-                        <div v-for="myVault in myVaults">
-                            <button>{{myVault.name}}</button>
+                        <div v-for="vault in myVaults">
+                            <button @click="addKeepToVault(user.id, vault.id, keep.id)">{{vault.name}}</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="my-keeps-area" v-else>
+            <div class="my-keeps-area" v-else-if="user.firstname && myKeeps.length == 0">
                 <p>You have no keeps.</p>
             </div>
+            <div class="my-keeps-area" v-else>
+                <p>Please login to check your keeps.</p>
+            </div>
         </div>
+
         <button @click='showKeeps'>Keeps</button>
-        <div class="showKeepArea" v-if="showAllKeeps">
-            <div v-for="keep in keeps">
-                {{keep.name}} - {{keep.description}}
+
+        <div class="all-Keeps-Area row" v-if="showAllKeeps">
+            <div class="all-keeps col-sm-3 border text-center" v-for="keep in keeps">
+                <img class="bl keeps-img" :src="keep.imageURL" alt=""> {{keep.name}} - {{keep.description}}
                 <button @click="showAddToVaultsList">Add to Vault</button>
                 <div v-if="showAddToVaults">
                     <div v-for="vault in myVaults">
@@ -92,5 +99,8 @@
 
 </script>
 
-<style>
+<style scoped>
+    .keeps-img {
+        margin: auto;
+    }
 </style>

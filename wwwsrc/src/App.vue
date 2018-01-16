@@ -35,4 +35,10 @@
     color: #2c3e50;
     margin-top: 60px;
   }
+  .bl{
+    display: block;
+  }
+  .border{
+    border: 2px solid black;
+  }
 </style>

@@ -22,7 +22,7 @@ var store = new Vuex.Store({
     state: {
         error: {},
         user: {},
-        message: {},
+        message: '',
         keeps: [],
         myKeeps: [],
         myVaults: [],
@@ -83,16 +83,19 @@ var store = new Vuex.Store({
                 .catch(err => {
                     commit('handleError', err)
                 })
+            $('#login-modal').modal('hide')
         },
         submitRegister({ commit, dispatch }, newUser) {
             accounts.post('register', newUser)
                 .then(res => {
                     commit('setUser', res.data)
+                    commit('setMessage', 'User Registered Successfully!')
                     router.push({ name: "Home" })
                 })
                 .catch(err => {
                     commit('handleError', err)
                 })
+            $('#register-modal').modal('hide')
         },
         logout({ commit, dispatch }) {
             accounts.delete('logout')
@@ -126,7 +129,6 @@ var store = new Vuex.Store({
                 })
         },
         submitNewKeep({ commit, dispatch }, newKeep) {
-            debugger
             api.post('keeps', newKeep)
                 .then(res => {
                     if (res) {
@@ -139,6 +141,7 @@ var store = new Vuex.Store({
                 .catch(err => {
                     commit('handleError', err)
                 })
+            $('#post-new-keep-modal').modal('hide')
         },
         //#endregion
 
@@ -165,6 +168,7 @@ var store = new Vuex.Store({
                 .catch(err => {
                     commit('handleError', err)
                 })
+            $('#post-new-vault-modal').modal('hide')
         },
         //#endregion
 
