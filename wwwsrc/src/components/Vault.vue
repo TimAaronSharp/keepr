@@ -9,7 +9,7 @@
                 <div v-if="showMyVaultKeeps">
                     <div class="my-vaultkeeps-area" v-if="myVaultKeeps.length > 0">
                         <div class="my-vaultkeeps" v-for="myVaultKeep in myVaultKeeps">
-                            {{myVaultKeep.name}} - {{myVaultKeep.description}}
+                            {{myVaultKeep.name}}
                         </div>
                     </div>
                     <div v-else>

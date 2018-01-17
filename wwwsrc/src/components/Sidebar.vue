@@ -4,7 +4,7 @@
             <NewKeep class="il"></NewKeep>
             <NewVault class="il"></NewVault>
             <Vault class="il"></Vault>
-            <!-- <ShowKeeps class="il"></ShowKeeps> -->
+            <ShowKeeps class="il"></ShowKeeps>
         </div>
 
     </div>

@@ -26,7 +26,10 @@ var store = new Vuex.Store({
         keeps: [],
         myKeeps: [],
         myVaults: [],
-        myVaultKeeps: []
+        myVaultKeeps: [],
+        showAllKeeps: false,
+        showMyKeeps: false,
+        showAddToVaults: false
     },
     mutations: {
         handleError(state, err) {
@@ -41,11 +44,20 @@ var store = new Vuex.Store({
         setKeeps(state, keeps) {
             state.keeps = keeps
         },
+        setShowMyKeeps(state, showMyKeeps) {
+            state.showMyKeeps = !state.showMyKeeps
+        },
         setMyKeeps(state, myKeeps) {
             state.myKeeps = myKeeps
         },
+        setShowAllKeeps(state, showAllKeeps) {
+            state.showAllKeeps = !state.showAllKeeps
+        },
         setMyVaults(state, vaults) {
             state.myVaults = vaults
+        },
+        setAddToVaultsList(state, showAddToVaults) {
+            state.showAddToVaults = !state.showAddToVaults
         },
         setMyVaultKeeps(state, vaultKeeps) {
             state.myVaultKeeps = vaultKeeps
@@ -143,15 +155,22 @@ var store = new Vuex.Store({
                 })
             $('#post-new-keep-modal').modal('hide')
         },
-        incrementKeepViews({ commit, dispatch }, keep) {
+        incrementKeepValues({ commit, dispatch }, keep) {
             api.put(`keeps/${keep.id}`, keep)
                 .then(res => {
                     dispatch('getAllKeeps')
-                    commit('setMessage', 'Keep viewed!')
+                    dispatch('getKeepsByUserId')
+                    commit('setMessage', 'Keep values updated!')
                 })
                 .catch(err => {
                     commit('handleError', err)
                 })
+        },
+        showAllKeeps({ commit, dispatch }) {
+            commit('setShowAllKeeps')
+        },
+        showMyKeeps({ commit, dispatch }) {
+            commit('setShowMyKeeps')
         },
         //#endregion
 
@@ -180,6 +199,19 @@ var store = new Vuex.Store({
                 })
             $('#post-new-vault-modal').modal('hide')
         },
+        showAddToVaultsList({ commit, dispatch }) {
+            commit('setAddToVaultsList')
+        },
+        // incrementVaultsAddedTo({ commit, dispatch }, keep) {
+        //     api.put(`keeps/${keep.id}`, keep)
+        //         .then(res => {
+        //             dispatch('getAllKeeps')
+        //             commit('setMessage', 'Keep viewed!')
+        //         })
+        //         .catch(err => {
+        //             commit('handleError', err)
+        //         })
+        // },
         //#endregion
 
         //#region VaultKeeps

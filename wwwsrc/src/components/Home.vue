@@ -24,14 +24,14 @@
 
     </nav>
     <Sidebar></Sidebar>
-    <ShowKeeps class="il"></ShowKeeps>
+    <!-- <ShowKeeps class="il"></ShowKeeps> -->
     <KeepArea></KeepArea>
 
   </div>
 </template>
 
 <script>
-  import ShowKeeps from './ShowKeeps'
+  // import ShowKeeps from './ShowKeeps'
   import Login from './Login'
   import Register from './Register'
   import Sidebar from './Sidebar'
@@ -59,7 +59,7 @@
       }
     },
     components: {
-      ShowKeeps,
+      // ShowKeeps,
       Login,
       Register,
       Sidebar,
