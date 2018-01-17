@@ -97,7 +97,7 @@
 -- ADD datecreated DateTime;
 
 -- DELETE FROM users WHERE id = 4
--- DELETE FROM vaults WHERE id = 2
+-- DELETE FROM vaults WHERE id = 22
 -- DELETE FROM vaultkeeps WHERE id = 27
 
 -- SELECT * FROM users

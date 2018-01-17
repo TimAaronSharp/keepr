@@ -33,7 +33,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
+    /* margin-top: 60px; */
     overflow: hidden;
   }
 
@@ -64,7 +64,14 @@
     margin-right: 20%;
   }
 
-  .fixed {
-    position: fixed;
+  .cursor:hover {
+    cursor: pointer;
+  }
+  .btn-no-border{
+    border: 0;
+    background: none;
+    position: absolute;
+    /* top:2%; */
+    /* z-index:1; */
   }
 </style>

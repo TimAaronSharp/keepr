@@ -1,15 +1,21 @@
 <template>
-    <div class="vault ilb">
-        <button @click="showMyVaultsList(); getVaultsByUserId();" class="btn btn-primary custom-btn custom-btn">My Vaults</button>
+    <div class="vault-component ilb">
+
         <div v-if="showMyVaults">
             <div class="my-vaults-area" v-if="myVaults.length > 0 && user.firstName">
                 <div class="my-vaults" v-for="myVault in myVaults">
-                    <button @click="showVaultKeepsList(); getVaultKeepsByVaultId(myVault.id);">{{myVault.name}}</button>
+                    <span class="vault" @click="showVaultKeepsList(); getVaultKeepsByVaultId(myVault.id);">{{myVault.name}}</span>
+                    <span class="vault-btns-span pull-right">
+                        <i @click="removeItem(myVault.id, 'Vaults')" class="fa fa-trash remove-btn"></i>
+                    </span>
                 </div>
                 <div v-if="showMyVaultKeeps">
-                    <div class="my-vaultkeeps-area" v-if="myVaultKeeps.length > 0">
-                        <div class="my-vaultkeeps" v-for="myVaultKeep in myVaultKeeps">
-                            {{myVaultKeep.name}}
+                    <div class="my-vaultkeeps-area pull-right" v-if="myVaultKeeps.length > 0">
+                        <div class="vault-keep" v-for="myVaultKeep in myVaultKeeps">
+                            <img class="vault-keep-img" :src="myVaultKeep.imageURL" alt="">{{myVaultKeep.name}}
+                            <span class="vault-btns-span pull-right">
+                                <i @click="removeItemFromVault(myVaultKeep.keepId, 'Keeps')" class="fa fa-trash remove-btn"></i>
+                            </span>
                         </div>
                     </div>
                     <div v-else>
@@ -33,7 +39,7 @@
         name: 'Vault',
         data() {
             return {
-                showMyVaults: false,
+
                 showMyVaultKeeps: false
             }
         },
@@ -41,18 +47,20 @@
         //   this.checkUser()
         // },
         methods: {
-            showMyVaultsList() {
-                this.showMyVaults = !this.showMyVaults
-            },
+
             showVaultKeepsList() {
                 this.showMyVaultKeeps = !this.showMyVaultKeeps
             },
-            getVaultsByUserId() {
-                this.$store.dispatch('getVaultsByUserId', this.user.id)
-            },
             getVaultKeepsByVaultId(vaultId) {
                 this.$store.dispatch('getVaultKeepsByVaultId', vaultId)
+            },
+            removeItem(itemId, route) {
+                this.$store.dispatch('removeItem', { itemId: itemId, route: route, userId: this.user.id })
+            },
+            removeItemFromVault(itemId) {
+                this.$store.dispatch('removeItemFromVault', { itemId: itemId, route: route})
             }
+
 
 
         },
@@ -60,12 +68,18 @@
             user() {
                 return this.$store.state.user
             },
+            currentVaultsKeeps() {
+                return this.$store.state.currentVaultsKeeps
+            },
             myVaults() {
                 return this.$store.state.myVaults
             },
             myVaultKeeps() {
                 return this.$store.state.myVaultKeeps
-            }
+            },
+            showMyVaults() {
+                return this.$store.state.showMyVaults
+            },
         },
         components: {
         }
@@ -73,5 +87,39 @@
 
 </script>
 
-<style>
+<style scoped>
+    .vault {
+        color: white;
+        font-size: 5rem;
+        overflow: scroll;
+    }
+
+    .vault-keep {
+        color: white;
+        font-size: 2rem;
+    }
+
+    .vault-keep-img {
+        max-width: 50px;
+    }
+
+    .remove-btn {
+        color: white;
+        font-size: 2.5rem;
+
+    }
+
+    .remove-btn:hover {
+        cursor: pointer;
+    }
+
+    .vault-btns-span {
+        padding-top: 5.5%;
+        /* padding-bottom: 34%; */
+    }
+
+    .vault-keep:hover,
+    .vault:hover {
+        cursor: pointer;
+    }
 </style>

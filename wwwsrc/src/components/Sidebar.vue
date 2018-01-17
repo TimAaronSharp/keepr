@@ -1,10 +1,22 @@
 <template>
-    <div class="sidebar fixed border">
+    <div class="sidebar fixed">
         <div v-if="user.firstName">
+            <button type="button" class="btn btn-primary custom-btn" data-toggle="modal" data-target="#post-new-keep-modal">
+                New Keep
+            </button>
+            <button type="button" class="btn custom-btn" data-toggle="modal" data-target="#post-new-vault-modal">
+                New Vault
+            </button>
+            <button @click="showMyVaultsList(); getVaultsByUserId();" class="btn btn-primary custom-btn custom-btn">My Vaults
+            </button>
+            <button @click="showMyKeepsList(); getKeepsByUserId();" class="btn btn-primary custom-btn">My Keeps</button>
+
+            <button @click="ShowAllKeeps" class="btn btn-primary custom-btn">Keeps</button>
+
             <NewKeep class="il"></NewKeep>
             <NewVault class="il"></NewVault>
             <Vault class="il"></Vault>
-            <ShowKeeps class="il"></ShowKeeps>
+            <!-- <ShowKeeps class="il"></ShowKeeps> -->
         </div>
 
     </div>
@@ -25,9 +37,26 @@
         },
         mounted() {
 
+            // this.getVaultsByUserId(),
+
         },
 
         methods: {
+            ShowAllKeeps() {
+                this.$store.dispatch('showAllKeeps')
+            },
+            showMyKeepsList() {
+                this.$store.dispatch('showMyKeeps')
+            },
+            getKeepsByUserId() {
+                this.$store.dispatch('getKeepsByUserId', this.user.id)
+            },
+            getVaultsByUserId() {
+                this.$store.dispatch('getVaultsByUserId', this.user.id)
+            },
+            showMyVaultsList() {
+                this.$store.dispatch('showMyVaultsList')
+            }
 
         },
         computed: {
@@ -36,7 +65,7 @@
             }
         },
         components: {
-            ShowKeeps,
+            // ShowKeeps,
             NewKeep,
             NewVault,
             Vault,
@@ -54,5 +83,30 @@
         background: #fa0296;
         /* z-index: -1; */
         margin-left: -1%;
+        margin-top:4.25%;
+        /* overflow: scroll; */
+    }
+
+    .fixed {
+        position: fixed;
+    }
+
+    .keep {
+        border-radius: 5px;
+        margin-top: 5%;
+    }
+
+    .add-to-vault-button {
+        background: black;
+        color: white;
+    }
+
+    .keep-preview {
+        font-weight: bold;
+    }
+
+    .icons {
+        color: black;
+        margin-right: 1rem;
     }
 </style>

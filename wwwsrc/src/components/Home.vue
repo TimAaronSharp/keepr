@@ -1,7 +1,7 @@
 <template>
   <div class="home container-fluid">
 
-    <nav class="navbar-static-top row">
+    <nav class="navbar-static-top row fixed">
       <div class="pull-left logo-div">
         <img class="logo-img" src="../assets/keepr-logo.png" alt="">
       </div>
@@ -73,6 +73,7 @@
   nav {
     background: #fa0296;
     color: white;
+    min-width: 100vw;
   }
 
   /* .home{
@@ -86,6 +87,10 @@
   .logo-img {
     height: 80px;
     width: 100px;
+  }
+
+  .fixed {
+    position: fixed;
   }
 
   /* .vert-align { 

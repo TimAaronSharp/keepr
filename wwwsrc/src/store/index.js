@@ -27,9 +27,12 @@ var store = new Vuex.Store({
         myKeeps: [],
         myVaults: [],
         myVaultKeeps: [],
+        currentVaultsKeeps: [],
         showAllKeeps: false,
         showMyKeeps: false,
-        showAddToVaults: false
+        showMyVaults: false,
+        showAddToVaults: false,
+        showMyVaults: false
     },
     mutations: {
         handleError(state, err) {
@@ -58,6 +61,9 @@ var store = new Vuex.Store({
         },
         setAddToVaultsList(state, showAddToVaults) {
             state.showAddToVaults = !state.showAddToVaults
+        },
+        toggleShowMyVaults(state, toggle) {
+            state.showMyVaults = !state.showMyVaults
         },
         setMyVaultKeeps(state, vaultKeeps) {
             state.myVaultKeeps = vaultKeeps
@@ -199,6 +205,9 @@ var store = new Vuex.Store({
                 })
             $('#post-new-vault-modal').modal('hide')
         },
+        showMyVaultsList({ commit, dispatch }) {
+            commit('toggleShowMyVaults')
+        },
         showAddToVaultsList({ commit, dispatch }) {
             commit('setAddToVaultsList')
         },
@@ -236,8 +245,23 @@ var store = new Vuex.Store({
                 .catch(err => {
                     commit('handleError', err)
                 })
-        }
+        },
 
+        //#endregion
+
+        //#region Universal
+        removeItem({ commit, dispatch }, payload) {
+            api.delete(`${payload.route}/${payload.itemId}`)
+                .then(res => {
+                    commit('setMessage', res)
+                    dispatch(`get${payload.route}ByUserId`, payload.userId)
+                    dispatch('getVaultKeepsByVaultId')
+
+                })
+                .catch(err => {
+                    commit('handleError', err)
+                })
+        }
         //#endregion
 
     }
