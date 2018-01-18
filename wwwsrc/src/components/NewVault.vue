@@ -10,7 +10,7 @@
                                     <div class="form-group">
                                         <label for="new-vault-name">
                                             <span class="glyphicon glyphicon-user"></span> Name</label>
-                                        <input type="text" class="form-control" id="new-vault-name" placeholder="Funny Cat Picture" v-model='newVault.name'>
+                                        <input type="text" class="form-control" minlength="1" required id="new-vault-name" placeholder="Funny Cat Picture" v-model='newVault.name'>
                                     </div>
                                     <div class="form-group">
                                         <label for="new-vault-description">

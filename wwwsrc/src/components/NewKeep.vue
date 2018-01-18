@@ -10,7 +10,7 @@
                                 <div class="form-group">
                                     <label for="new-keep-name">
                                         <span class="glyphicon glyphicon-user"></span> Name</label>
-                                    <input type="text" class="form-control" id="new-keep-name" placeholder="Funny Cat Picture" v-model='newKeep.name'>
+                                    <input type="text" class="form-control" minlength="1" required id="new-keep-name" placeholder="Funny Cat Picture" v-model='newKeep.name'>
                                 </div>
                                 <div class="form-group">
                                     <label for="new-keep-description">
@@ -20,7 +20,7 @@
                                 <div class="form-group">
                                     <label for="new-keep-imageurl">
                                         <span class="glyphicon glyphicon-eye-open"></span> Image URL</label>
-                                    <input type="text" class="form-control" id="new-keep-imageurl" placeholder="http://placehold.it/200x200" v-model='newKeep.imageURL'>
+                                    <input type="text" class="form-control" id="new-keep-imageurl" required placeholder="http://placehold.it/200x200" v-model='newKeep.imageURL'>
                                 </div>
                                 <button type="submit" class="btn btn-default btn-success" data-toggle="modal" data-backdrop="false">
                                     Submit</button>

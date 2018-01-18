@@ -37,6 +37,13 @@
     overflow: hidden;
   }
 
+  .vault {
+    color: white;
+    font-size: 4rem;
+    overflow: scroll;
+    background: #fa0296;
+  }
+
   .bl {
     display: block;
   }
@@ -45,8 +52,11 @@
     display: inline-block;
   }
 
-  .border {
+  /* .border {
     border: 2px solid black;
+  } */
+  p{
+    font-weight:bold;
   }
   .custom-btn {
     background: black;
@@ -55,6 +65,9 @@
     border-radius: 5px;
     font-size: 1.4rem;
     font-weight: bold;
+  }
+  img{
+    border-radius:5px;
   }
 
   .account-btn {

@@ -12,13 +12,14 @@
                 </button>
                 <button @click="showMyKeepsList(); getKeepsByUserId();" class="btn btn-primary custom-btn">My Keeps</button>
 
-                <button @click="ShowAllKeeps" class="btn btn-primary custom-btn">Keeps</button>
+                <button @click="showAllKeepsList" class="btn btn-primary custom-btn">Keeps</button>
 
-
-                <Vault class="il"></Vault>
+                <Vault></Vault>
                 <!-- <ShowKeeps class="il"></ShowKeeps> -->
             </div>
-
+            <div v-else>
+                <button @click="showAllKeepsList" class="btn btn-primary custom-btn">Keeps</button>
+            </div>
 
         </div>
         <NewKeep class="il"></NewKeep>
@@ -45,10 +46,16 @@
         },
 
         methods: {
-            ShowAllKeeps() {
+            showAllKeepsList() {
+                if (this.showMyKeeps == true) {
+                    this.showMyKeepsList()
+                }
                 this.$store.dispatch('showAllKeeps')
             },
             showMyKeepsList() {
+                if (this.showAllKeeps == true) {
+                    this.showAllKeepsList()
+                }
                 this.$store.dispatch('showMyKeeps')
             },
             getKeepsByUserId() {
@@ -65,6 +72,12 @@
         computed: {
             user() {
                 return this.$store.state.user
+            },
+            showMyKeeps() {
+                return this.$store.state.showMyKeeps
+            },
+            showAllKeeps() {
+                return this.$store.state.showAllKeeps
             }
         },
         components: {
@@ -83,6 +96,8 @@
         position: absolute;
         min-height: 100vh;
         width: 25%;
+        font-size: 1.4rem;
+        font-weight: bold;
         background: #fa0296;
         /* z-index: -1; */
         margin-left: -1%;

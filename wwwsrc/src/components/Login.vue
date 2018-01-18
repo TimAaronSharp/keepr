@@ -9,12 +9,13 @@
                                 <div class="form-group">
                                     <label for="login-email">
                                         <span class="glyphicon glyphicon-user"></span> Email</label>
-                                    <input type="email" class="form-control" id="login-email" placeholder="woot1337h4xors@rockulikeahurricane.org" v-model='login.email'>
+                                    <input type="email" class="form-control" maxlength="255" id="login-email" placeholder="woot1337h4xors@rockulikeahurricane.org"
+                                        v-model='login.email'>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">
                                         <span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                                    <input type="password" class="form-control" id="login-password" placeholder="eyelessthan3horses" v-model='login.password'>
+                                    <input type="password" class="form-control" minlength="4" id="login-password" placeholder="eyelessthan3horses" v-model='login.password'>
                                 </div>
                                 <button type="submit" class="btn btn-default btn-success" data-toggle="modal" data-backdrop="false">
                                     Login</button>
@@ -68,7 +69,7 @@
         z-index: 50;
     } */
 
-    .modal-backdrop{
+    .modal-backdrop {
         z-index: -1;
     }
 </style>

@@ -27,13 +27,15 @@ var store = new Vuex.Store({
         myKeeps: [],
         activeKeep: {},
         myVaults: [],
+        activeVault: {},
         myVaultKeeps: [],
         currentVaultsKeeps: [],
         showAllKeeps: false,
         showMyKeeps: false,
         showMyVaults: false,
         showAddToVaults: false,
-        showMyVaults: false
+        showMyVaults: false,
+        showShareMessage: false
     },
     mutations: {
         handleError(state, err) {
@@ -63,6 +65,9 @@ var store = new Vuex.Store({
         setMyVaults(state, vaults) {
             state.myVaults = vaults
         },
+        setActiveVault(state, vault) {
+            state.activeVault = vault
+        },
         setAddToVaultsList(state, showAddToVaults) {
             state.showAddToVaults = !state.showAddToVaults
         },
@@ -71,6 +76,9 @@ var store = new Vuex.Store({
         },
         setMyVaultKeeps(state, vaultKeeps) {
             state.myVaultKeeps = vaultKeeps
+        },
+        toggleShareMessage(state, share) {
+            state.showShareMessage = !state.showShareMessage
         }
     },
     actions: {
@@ -218,6 +226,11 @@ var store = new Vuex.Store({
         showAddToVaultsList({ commit, dispatch }) {
             commit('setAddToVaultsList')
         },
+        setActiveVault({ commit, dispatch }, payload) {
+            commit('setActiveVault', payload.vault)
+            dispatch('getVaultsByUserId', payload.user.id)
+            dispatch('getVaultKeepsByVaultId', payload.vault.id)
+        },
         // incrementVaultsAddedTo({ commit, dispatch }, keep) {
         //     api.put(`keeps/${keep.id}`, keep)
         //         .then(res => {
@@ -252,6 +265,7 @@ var store = new Vuex.Store({
                 .catch(err => {
                     commit('handleError', err)
                 })
+            $('#vault-list').modal('hide')
         },
 
         //#endregion
@@ -270,6 +284,9 @@ var store = new Vuex.Store({
                 .catch(err => {
                     commit('handleError', err)
                 })
+        },
+        toggleShareMessage({ commit, dispatch }) {
+            commit('toggleShareMessage')
         }
         //#endregion
 
