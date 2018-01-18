@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Error></Error>
-    <Message></Message>
+    <!-- <Error></Error>
+    <Message></Message> -->
     <router-view/>
   </div>
 </template>

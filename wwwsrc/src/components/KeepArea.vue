@@ -1,13 +1,13 @@
 <template>
     <div class="all-keeps-area pull-right">
-        <div v-if="showMyKeeps">
+        <div class="row "v-if="showMyKeeps">
             <div class="hover-btns br all-keeps keep col-sm-3 col-sm-offset-1 text-center bl keep-text" v-for="myKeep in myKeeps">
                 <img class="bl keeps-img" :src="myKeep.imageURL" alt="">
                 <p class="keep-preview">{{myKeep.name}}</p>
-                <button type="button" class="btn-no-border view-btn" data-toggle="modal" data-target="#keep-view" @click="incrementKeepViews(myKeep); setActiveKeep(myKeep);">
+                <button type="button" class="btn-no-border view-btn" data-toggle="modal" data-target="#keep-view" @click="getKeepsByUserId(); incrementKeepViews(myKeep); setActiveKeep(myKeep);">
                     <img src="../assets/view-btn.png">
                 </button>
-                <button class="btn-no-border keep-btn" data-toggle="modal" data-target="#vault-list" @click="getVaultsByUserId(); setActiveKeep(myKeep);">
+                <button class="btn-no-border keep-btn" data-toggle="modal" data-target="#vault-list" @click="getKeepsByUserId(); setActiveKeep(myKeep);">
                     <img src="../assets/keep-btn.png">
                 </button>
                 <button class="btn-no-border share-btn" id="share-effect" @click="toggleShareMessage">
