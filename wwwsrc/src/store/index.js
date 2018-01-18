@@ -25,6 +25,7 @@ var store = new Vuex.Store({
         message: '',
         keeps: [],
         myKeeps: [],
+        activeKeep: {},
         myVaults: [],
         myVaultKeeps: [],
         currentVaultsKeeps: [],
@@ -52,6 +53,9 @@ var store = new Vuex.Store({
         },
         setMyKeeps(state, myKeeps) {
             state.myKeeps = myKeeps
+        },
+        setActiveKeep(state, keep) {
+            state.activeKeep = keep
         },
         setShowAllKeeps(state, showAllKeeps) {
             state.showAllKeeps = !state.showAllKeeps
@@ -178,6 +182,9 @@ var store = new Vuex.Store({
         showMyKeeps({ commit, dispatch }) {
             commit('setShowMyKeeps')
         },
+        setActiveKeep({ commit, dispatch }, keep) {
+            commit('setActiveKeep', keep)
+        },
         //#endregion
 
         //#region Vaults
@@ -256,6 +263,8 @@ var store = new Vuex.Store({
                     commit('setMessage', res)
                     dispatch(`get${payload.route}ByUserId`, payload.userId)
                     dispatch('getVaultKeepsByVaultId')
+                    dispatch('getAllKeeps')
+                    dispatch('getKeepsByUserId')
 
                 })
                 .catch(err => {

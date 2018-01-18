@@ -48,7 +48,6 @@
   .border {
     border: 2px solid black;
   }
-
   .custom-btn {
     background: black;
     color: white;
@@ -59,19 +58,23 @@
   }
 
   .account-btn {
-    margin-top: 35%;
-    margin-bottom: 34%;
-    margin-right: 20%;
+    padding-top: 1.3%;
+    /* padding-bottom: 34%; */
+    margin-right: 2%;
   }
 
   .cursor:hover {
     cursor: pointer;
   }
-  .btn-no-border{
+
+  .btn-no-border {
     border: 0;
     background: none;
     position: absolute;
-    /* top:2%; */
-    /* z-index:1; */
+    display: none;
+  }
+
+  .hover-btns:hover button {
+    display: inline-block;
   }
 </style>

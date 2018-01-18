@@ -38,7 +38,7 @@ namespace keepr.Controllers
         }
 
         // POST api/values
-        // [Authorize]
+        [Authorize]
         [HttpPost]
         public Keep Post([FromBody]Keep keep)
         {
@@ -58,7 +58,7 @@ namespace keepr.Controllers
         }
 
         // DELETE api/values/5
-        // [Authorize]
+        [Authorize]
         [HttpDelete("{id}")]
         public string Delete(int id)
         {

@@ -1,16 +1,11 @@
 <template>
     <div class="register-component">
         <div class="wrapper pull-right">
-            <button type="button" class="btn custom-btn account-btn" data-toggle="modal" data-target="#register-modal">
-                Register
-            </button>
+            
         </div>
         <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="register-modal-label">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header row">
-                        <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
-                    </div>
                     <div class="modal-body">
                         <div class="register-body form">
                             <form class="form" id="register" @submit="submitRegister">
@@ -50,9 +45,6 @@
 
                             </form>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-
                     </div>
                 </div>
             </div>

@@ -1,26 +1,29 @@
 <template>
-    <div class="sidebar fixed">
-        <div v-if="user.firstName">
-            <button type="button" class="btn btn-primary custom-btn" data-toggle="modal" data-target="#post-new-keep-modal">
-                New Keep
-            </button>
-            <button type="button" class="btn custom-btn" data-toggle="modal" data-target="#post-new-vault-modal">
-                New Vault
-            </button>
-            <button @click="showMyVaultsList(); getVaultsByUserId();" class="btn btn-primary custom-btn custom-btn">My Vaults
-            </button>
-            <button @click="showMyKeepsList(); getKeepsByUserId();" class="btn btn-primary custom-btn">My Keeps</button>
+    <div>
+        <div class="sidebar fixed">
+            <div v-if="user.firstName">
+                <button type="button" class="btn btn-primary custom-btn" data-toggle="modal" data-target="#post-new-keep-modal">
+                    New Keep
+                </button>
+                <button type="button" class="btn custom-btn" data-toggle="modal" data-target="#post-new-vault-modal">
+                    New Vault
+                </button>
+                <button @click="showMyVaultsList(); getVaultsByUserId();" class="btn btn-primary custom-btn custom-btn">My Vaults
+                </button>
+                <button @click="showMyKeepsList(); getKeepsByUserId();" class="btn btn-primary custom-btn">My Keeps</button>
 
-            <button @click="ShowAllKeeps" class="btn btn-primary custom-btn">Keeps</button>
+                <button @click="ShowAllKeeps" class="btn btn-primary custom-btn">Keeps</button>
 
-            <NewKeep class="il"></NewKeep>
-            <NewVault class="il"></NewVault>
-            <Vault class="il"></Vault>
-            <!-- <ShowKeeps class="il"></ShowKeeps> -->
+
+                <Vault class="il"></Vault>
+                <!-- <ShowKeeps class="il"></ShowKeeps> -->
+            </div>
+
+
         </div>
-
+        <NewKeep class="il"></NewKeep>
+        <NewVault class="il"></NewVault>
     </div>
-
 </template>
 
 <script>
@@ -83,7 +86,7 @@
         background: #fa0296;
         /* z-index: -1; */
         margin-left: -1%;
-        margin-top:4.25%;
+        margin-top: 4.18%;
         /* overflow: scroll; */
     }
 

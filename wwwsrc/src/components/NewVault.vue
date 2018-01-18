@@ -4,9 +4,6 @@
             <div class="modal fade" id="post-new-vault-modal" tabindex="-1" role="dialog" aria-labelledby="post-new-vault-modal-label">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header row">
-                            <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
-                        </div>
                         <div class="modal-body">
                             <div class="new-vault-body form">
                                 <form class="form" id="new-vault" @submit="submitNewVault">
@@ -28,12 +25,8 @@
                                     <button type="submit" class="btn btn-default btn-success" data-toggle="modal" data-backdrop="false">
                                         Submit</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-
                                 </form>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-
                         </div>
                     </div>
                 </div>

@@ -12,17 +12,27 @@
         <h1>Welcome to Keepr</h1>
       </div>
 
-      <div class="pull-right" v-if="user.firstName">
-        <button class="btn custom-btn account-btn" type="button" @click="logout">Logout</button>
+      <div class="account-btn pull-right" v-if="user.firstName">
+        <button class="btn custom-btn" type="button" @click="logout">Logout</button>
       </div>
-
-      <div v-else>
-        <Register></Register>
-        <Login></Login>
-
+      <div class="wrapper account-btn pull-right ilb" v-else>
+        <button type="button" class="btn custom-btn" data-toggle="modal" data-target="#login-modal">
+          Login
+        </button>
+        <button type="button" class="btn custom-btn" data-toggle="modal" data-target="#register-modal">
+          Register
+        </button>
+        
       </div>
 
     </nav>
+
+    <div v-if="!user.firstName">
+      <Register></Register>
+      <Login></Login>
+
+    </div>
+
     <Sidebar></Sidebar>
     <!-- <ShowKeeps class="il"></ShowKeeps> -->
     <KeepArea></KeepArea>
@@ -75,7 +85,9 @@
     color: white;
     min-width: 100vw;
   }
-
+  .wrapper{
+    position:relative;
+  }
   /* .home{
     min-height: 100vh;
   } */
@@ -91,6 +103,10 @@
 
   .fixed {
     position: fixed;
+  }
+
+  .top-level {
+    z-index: 50;
   }
 
   /* .vert-align { 

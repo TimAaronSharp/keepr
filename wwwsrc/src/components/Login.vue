@@ -1,17 +1,9 @@
 <template>
     <div class="login-component">
-        <div class="wrapper pull-right">
-            <button type="button" class="btn custom-btn account-btn" data-toggle="modal" data-target="#login-modal">
-                Login
-            </button>
-        </div>
         <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modal-label">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header row">
-                        <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
-                    </div>
-                    <div class="modal-body">
+                    <div class="modal-body top-level-modal">
                         <div class="login-body form">
                             <form class="form" id="login" @submit="submitLogin">
                                 <div class="form-group">
@@ -30,9 +22,6 @@
 
                             </form>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-
                     </div>
                 </div>
             </div>
@@ -74,5 +63,12 @@
 
 </script>
 
-<style>
+<style scoped>
+    /* .top-level-modal{
+        z-index: 50;
+    } */
+
+    .modal-backdrop{
+        z-index: -1;
+    }
 </style>

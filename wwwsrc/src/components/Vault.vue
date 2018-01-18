@@ -14,7 +14,7 @@
                         <div class="vault-keep" v-for="myVaultKeep in myVaultKeeps">
                             <img class="vault-keep-img" :src="myVaultKeep.imageURL" alt="">{{myVaultKeep.name}}
                             <span class="vault-btns-span pull-right">
-                                <i @click="removeItemFromVault(myVaultKeep.keepId, 'Keeps')" class="fa fa-trash remove-btn"></i>
+                                <i @click="removeItem(myVaultKeep.keepId, 'Keeps')" class="fa fa-trash remove-btn"></i>
                             </span>
                         </div>
                     </div>
@@ -25,9 +25,6 @@
             </div>
             <div class="my-vaults-area" v-else-if="user.firstName && myVaults.length == 0">
                 <p>You have no vaults.</p>
-            </div>
-            <div class="my-vaults-area" v-else>
-                <p>Please login to view vaults.</p>
             </div>
         </div>
     </div>
@@ -58,7 +55,7 @@
                 this.$store.dispatch('removeItem', { itemId: itemId, route: route, userId: this.user.id })
             },
             removeItemFromVault(itemId) {
-                this.$store.dispatch('removeItemFromVault', { itemId: itemId, route: route})
+                this.$store.dispatch('removeItemFromVault', { itemId: itemId, route: route })
             }
 
 

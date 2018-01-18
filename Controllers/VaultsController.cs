@@ -46,7 +46,7 @@ namespace keepr.Controllers
         }
 
         // PUT api/values/5
-        // [Authorize]
+        [Authorize]
         [HttpPut("{id}")]
         public Vault Put(int id, [FromBody]Vault vault)
         {
@@ -58,7 +58,7 @@ namespace keepr.Controllers
         }
 
         // DELETE api/values/5
-        // [Authorize]
+        [Authorize]
         [HttpDelete("{id}")]
         public string Delete(int id)
         {

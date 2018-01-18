@@ -31,26 +31,23 @@
             <div class="my-keeps-area" v-else-if="user.firstname && myKeeps.length == 0">
                 <p>You have no keeps.</p>
             </div>
-            <div class="my-keeps-area" v-else>
-                <p>Please login to check your keeps.</p>
-            </div>
         </div>
 
         <div class="all-Keeps-Area row" id="keep-area" v-if="showAllKeeps">
-            <div class="all-keeps keep col-sm-3 col-sm-offset-1 border text-center bl" v-for="keep in keeps">
+            <div class="hover-btns all-keeps keep col-sm-3 col-sm-offset-1 border text-center bl" v-for="keep in keeps">
                 <img class="bl keeps-img" :src="keep.imageURL" alt="">
                 <p class="keep-preview">{{keep.name}}</p>
-                <button class="btn-no-border view-btn hidden" @click="incrementKeepViews(keep)">
+                <button type="button" class="btn-no-border view-btn" data-toggle="modal" data-target="#keep-view" @click="incrementKeepViews(keep); setActiveKeep(keep);">
                     <img src="../assets/view-btn.png">
                 </button>
-                <button class="btn-no-border keep-btn hidden" @click="showAddToVaultsList">
+                <button class="btn-no-border keep-btn" @click="showAddToVaultsList">
                     <img src="../assets/keep-btn.png">
                 </button>
-                <button class="btn-no-border share-btn hidden">
+                <button class="btn-no-border share-btn">
                     <img src="../assets/share-btn.png">
                 </button>
                 <div class="wrapper bl">
-                    <i class="">{{keep.views}}</i>
+                    <i class="fa fa-eye">{{keep.views}}</i>
                     <i class="fa fa-fort-awesome">{{keep.vaultsAddedTo}}</i>
                 </div>
                 <div v-if="showAddToVaults">
@@ -59,6 +56,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-if="activeKeep.name">
+            <div class="modal fade" id="keep-view" tabindex="-1" role="dialog" aria-labelledby="keep-view">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                        
+                            
+                                <img :src="this.activeKeep.imageURL" alt="">
+                                <p>{{this.activeKeep.name}}</p>
+                                <p>{{this.activeKeep.description}}</p>
+                           
+
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -114,7 +131,9 @@
             removeItem(itemId, route) {
                 this.$store.dispatch('removeItem', { itemId: itemId, route: route, userId: this.user.id })
             },
-
+            setActiveKeep(keep) {
+                this.$store.dispatch('setActiveKeep', keep)
+            }
         },
         computed: {
             keeps() {
@@ -122,6 +141,9 @@
             },
             myKeeps() {
                 return this.$store.state.myKeeps
+            },
+            activeKeep() {
+                return this.$store.state.activeKeep
             },
             user() {
                 return this.$store.state.user
@@ -138,7 +160,6 @@
             showMyKeeps() {
                 return this.$store.state.showMyKeeps
             }
-
         },
         components: {
 
@@ -155,34 +176,30 @@
         padding-right: 5%;
         margin-top: 5%;
     }
-
     .all-keeps {
         position: relative;
     }
-
     .keep {
         margin-top: 2.5%;
         margin-bottom: 2.5%;
     }
-
     .keeps-img {
         margin: auto;
     }
-    .view-btn{
+    .view-btn {
         top: 2%;
         left: 25%;
     }
-    .keep-btn{
+    .keep-btn {
         top: 2%;
         right: 25%;
 
     }
-    .share-btn{
+    .share-btn {
         top: 31%;
         left: 38%;
 
     }
-
     .add-to-vault-button {
         background: #fa0296;
         color: white;
