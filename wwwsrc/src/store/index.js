@@ -158,6 +158,15 @@ var store = new Vuex.Store({
                     commit('handleError', err)
                 })
         },
+        getKeepByKeepId({ commit, dispatch }, keepId) {
+            api(`keeps/${keepId}`)
+                .then(res => {
+                    dispatch('setActiveKeep', res)
+                })
+                .catch(err => {
+                    commit('handleError', err)
+                })
+        },
         submitNewKeep({ commit, dispatch }, newKeep) {
             api.post('keeps', newKeep)
                 .then(res => {

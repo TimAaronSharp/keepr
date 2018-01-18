@@ -14,8 +14,10 @@
                         <div v-if="activeVault.id == myVault.id">
                             <div class="my-vaultkeeps-area row" v-if="myVaultKeeps.length > 0">
                                 <div class="vault-keep col-sm-12 bl" v-for="myVaultKeep in myVaultKeeps">
-                                    <span class="pull-left vault-keep-in-list">
-                                        <img class="vault-keep-img " :src="myVaultKeep.imageURL" alt=""> {{myVaultKeep.name}}</span>
+                                    <div @click='setActiveKeep(myVaultKeep); checking(myVaultKeep);' data-toggle="modal" data-target="#keep-view">
+                                        <span class="pull-left vault-keep-in-list">
+                                            <img class="vault-keep-img" :src="myVaultKeep.imageURL" alt=""> {{myVaultKeep.name}}</span>
+                                    </div>
                                     <span class="vault-btns-span pull-right">
                                         <i @click="removeItem(myVaultKeep.keepId, 'Keeps')" class="fa fa-trash remove-btn"></i>
                                     </span>
@@ -66,6 +68,15 @@
             },
             setActiveVault(vault) {
                 this.$store.dispatch('setActiveVault', { vault: vault, user: this.user })
+            },
+            setActiveKeep(keep) {
+                this.$store.dispatch('setActiveKeep', keep)
+            },
+            getKeepByKeepId(keepId) {
+                this.$store.dispatch('getKeepByKeepId', keepId)
+            },
+            checking(myVaultKeep) {
+                console.log(myVaultKeep)
             }
 
 
@@ -89,6 +100,9 @@
             },
             activeVault() {
                 return this.$store.state.activeVault
+            },
+            activeKeep() {
+                return this.$store.state.activeKeep
             }
         },
         components: {

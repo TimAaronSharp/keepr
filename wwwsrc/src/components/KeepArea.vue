@@ -1,13 +1,13 @@
 <template>
     <div class="all-keeps-area pull-right">
-        <div class="row "v-if="showMyKeeps">
+        <div class="row " v-if="showMyKeeps">
             <div class="hover-btns br all-keeps keep col-sm-3 col-sm-offset-1 text-center bl keep-text" v-for="myKeep in myKeeps">
                 <img class="bl keeps-img" :src="myKeep.imageURL" alt="">
                 <p class="keep-preview">{{myKeep.name}}</p>
-                <button type="button" class="btn-no-border view-btn" data-toggle="modal" data-target="#keep-view" @click="getKeepsByUserId(); incrementKeepViews(myKeep); setActiveKeep(myKeep);">
+                <button type="button" class="btn-no-border view-btn" data-toggle="modal" data-target="#keep-view" @click="getKeepsByUserId(); getVaultsByUserId(); setActiveKeep(myKeep); incrementKeepViews(myKeep);">
                     <img src="../assets/view-btn.png">
                 </button>
-                <button class="btn-no-border keep-btn" data-toggle="modal" data-target="#vault-list" @click="getKeepsByUserId(); setActiveKeep(myKeep);">
+                <button class="btn-no-border keep-btn" data-toggle="modal" data-target="#vault-list" @click="getKeepsByUserId(); getVaultsByUserId(); setActiveKeep(myKeep);">
                     <img src="../assets/keep-btn.png">
                 </button>
                 <button class="btn-no-border share-btn" id="share-effect" @click="toggleShareMessage">
@@ -35,10 +35,10 @@
             <div class="hover-btns br all-keeps keep col-sm-3 col-sm-offset-1 text-center bl keep-text" v-for="keep in keeps">
                 <img class="bl keeps-img" :src="keep.imageURL" alt="">
                 <p class="keep-preview">{{keep.name}}</p>
-                <button type="button" class="btn-no-border view-btn" data-toggle="modal" data-target="#keep-view" @click="incrementKeepViews(keep); setActiveKeep(keep);">
+                <button type="button" class="btn-no-border view-btn" data-toggle="modal" data-target="#keep-view" @click="setActiveKeep(keep); getKeepsByUserId(); getVaultsByUserId(); incrementKeepViews(keep);">
                     <img src="../assets/view-btn.png">
                 </button>
-                <button class="btn-no-border keep-btn" data-toggle="modal" data-target="#vault-list" @click="getVaultsByUserId(); setActiveKeep(keep);">
+                <button class="btn-no-border keep-btn" data-toggle="modal" data-target="#vault-list" @click="getKeepsByUserId(); getVaultsByUserId(); setActiveKeep(keep);">
                     <img src="../assets/keep-btn.png">
                 </button>
                 <button class="btn-no-border share-btn" id="share-effect" @click="toggleShareMessage">
@@ -55,24 +55,24 @@
                 </div> -->
             </div>
         </div>
-        <div v-if="activeKeep.name">
-            <div class="modal fade" id="keep-view" tabindex="-1" role="dialog" aria-labelledby="keep-view">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body keep-text">
+
+        <div class="modal fade" id="keep-view" tabindex="-1" role="dialog" aria-labelledby="keep-view">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body keep-text">
 
 
-                            <img :src="this.activeKeep.imageURL" alt="">
-                            <p>{{this.activeKeep.name}}</p>
-                            <p>{{this.activeKeep.description}}</p>
+                        <img :src="this.activeKeep.imageURL" alt="">
+                        <p>{{this.activeKeep.name}}</p>
+                        <p>{{this.activeKeep.description}}</p>
 
 
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div class="modal fade" id="vault-list" tabindex="-1" role="dialog" aria-labelledby="vault-list">
             <div class="modal-dialog" role="document">
@@ -86,7 +86,7 @@
                         <div class="row">
                             <div class="add-to-vault-button text-center col-sm-12" v-for="myVault in myVaults">
 
-                                <span @click="addKeepToVault(user.id, myVault.id, activeKeep.id); incrementVaultsAddedTo(activeKeep);">{{myVault.name}}</span>
+                                <span class="cursor" @click="addKeepToVault(user.id, myVault.id, activeKeep.id); incrementVaultsAddedTo(activeKeep);">{{myVault.name}}</span>
 
                             </div>
                         </div>
@@ -130,6 +130,9 @@
             },
             getVaultsByUserId() {
                 this.$store.dispatch('getVaultsByUserId', this.user.id)
+            },
+            getKeepsByUserId() {
+                this.$store.dispatch('getKeepsByUserId', this.user.id)
             },
             addKeepToVault(userId, vaultId, keepId) {
                 this.$store.dispatch('addKeepToVault', { userId: userId, vaultId: vaultId, keepId: keepId })
